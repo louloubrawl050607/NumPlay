@@ -270,3 +270,4 @@ NumPlay is licensed under the [GNU General Public License v3.0](LICENSE). Copyri
     <td align="center"><img src="docs/media/gallery/undertale.gif" width="100%" alt="Undertale: Flowey's friendliness pellets, Toriel's tile puzzle and her fire"><br><a href="games/undertale/README.md"><b>Undertale</b></a></td>
   </tr>
 </table>
+ 
