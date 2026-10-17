@@ -74,22 +74,12 @@ $(B):
 # `module` target), then becomes a NumPlay module: one block of flash, its RAM
 # moved into the shared arena, `main` renamed np_<game>_main.
 MOD_numdash = games/numdash/build/module.o
-MOD_crossyroad = games/crossyroad/output/module.o
 MOD_numdrive = games/numdrive/output/device/module.o
-MOD_balatro = games/balatro/output/module.o
 MOD_buckshot = games/buckshot/output/module.o
-MOD_portal = games/portal/output/module.o
-MOD_chess = games/chess/output/module.o
 MOD_numvisuals = games/numvisuals/output/module.o
-MOD_tetris = $(B)/tetris/raw.o
+MOD_hollowknight = games/hollowknight/output/module.o
 ENTRY = main
-ENTRY_tetris = np_tetris_main
 
-$(B)/tetris/raw.o: FORCE | $(B)
-	mkdir -p $(B)/tetris
-	cd games/tetris/tetris && NWLINK="$(NWLINK)" $(CARGO) build --release --quiet
-	$(ARM_LD) -r -z noexecstack --gc-sections -e np_tetris_main -u np_tetris_main \
-	  games/tetris/tetris/target/thumbv7em-none-eabihf/release/libtetris.a -o $@
 
 $(B)/modules/%.o: FORCE | $(B)
 	@if [ "$*" != tetris ]; then $(MAKE) --no-print-directory -C games/$* module NWLINK="$(NWLINK)"; \
@@ -250,14 +240,11 @@ $(STD_APPS): $(B)/apps/%.nwa: FORCE | $(B)
 
 # ------------------------------------------------------------------ simulator
 SIM_numdash = games/numdash/build/sim-module.o
-SIM_crossyroad = games/crossyroad/output/sim-module.o
 SIM_numdrive = games/numdrive/output/sim-module.o
 SIM_balatro = games/balatro/output/sim-module.o
 SIM_buckshot = games/buckshot/output/sim-module.o
-SIM_portal = games/portal/output/sim-module.o
-SIM_chess = games/chess/output/sim-module.o
+MOD_hollowknight = games/hollowknight/output/module.o
 SIM_numvisuals = games/numvisuals/output/sim-module.o
-SIM_tetris = $(B)/sim/tetris.o
 SIM_CFLAGS = -std=gnu11 -O2 -fPIC -DNP_SIMULATOR=1 -DNP_VERSION='"$(VERSION)"' $(EADK_SIM_CFLAGS) -Ilauncher/src -Wall -Wno-unused-parameter
 
 $(B)/sim/tetris.o: FORCE | $(B)
