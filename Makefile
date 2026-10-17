@@ -7,7 +7,6 @@
 #   make clean
 #
 # Needs arm-none-eabi-gcc (with newlib), Node.js for nwlink, Python 3 with
-# Pillow, and Rust with the thumbv7em-none-eabihf target for Tetris.
 
 NWLINK ?= npx --yes -- nwlink@1.0.0
 ARM_CC = arm-none-eabi-gcc
@@ -30,7 +29,7 @@ APP_SPACE = 2031616
 # Upsilon, the N0110 and N0115's custom software, gives .nwa apps less RAM: NumPlay-Upsilon.nwa has
 # the games that fit it (NumPlay draws their text there: see launcher/src/compat.c)
 UPSILON_RAM = 107674
-UPSILON_GAMES = crossyroad blockblast portal tetris chess flappybird pacman snake connectfour solitaire g2048 minesweeper \
+UPSILON_GAMES = blockblast portal chess flappybird pacman snake connectfour solitaire g2048 minesweeper \
   breakout numvisuals
 
 # NumPlay and its discreet versions: the same app, with another name and icon
